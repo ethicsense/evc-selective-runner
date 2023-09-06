@@ -1,4 +1,5 @@
 import torch
+from ultralytics import YOLO
 
 class model_generator:
 
@@ -10,7 +11,7 @@ class model_generator:
         if self.model_type == 'ResNet':
             model = torch.hub.load(
                 'pytorch/vision:v0.10.0',
-                {self.model_name},
+                str(self.model_name),
                 pretrained=True,
                 progress=True
             )
@@ -23,10 +24,14 @@ class model_generator:
             )
 
         if self.model_type == 'MobileNet':
-            pass
+            model = torch.hub.load(
+                'pytorch/vision:v0.10.0',
+                'mobilenet_v2',
+                pretrained=True
+            )
 
         if self.model_type == 'YOLOv8':
-            pass
+            model = YOLO("yolov8n.pt")
 
         return model
 
