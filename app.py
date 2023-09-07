@@ -2,6 +2,7 @@ import gradio as gr
 import os
 import cv2
 import model_selector
+import argparse
 
 
 def print_model(model_type, model_name):
@@ -30,7 +31,18 @@ demo = gr.Interface(
 )
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '--server_name',
+        type=str
+    )
+    parser.add_argument(
+        '--server_port',
+        type=float
+    )
+    args=parser.parse_args()
+
     demo.launch(
-        server_name='0.0.0.0',
-        server_port=7986
+        server_name=args.server_name,
+        server_port=args.server_port
     )
