@@ -15,3 +15,5 @@ RUN pip install --upgrade pip
 RUN pip3 install torch torchvision torchaudio
 RUN pip install ultralytics
 RUN pip install gradio
+
+CMD ["home/app.py", "--server_name", "0.0.0.0", "--server_port", "7999"]
