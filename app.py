@@ -38,7 +38,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         '--server_port',
-        type=float
+        type=int
     )
     args=parser.parse_args()
 
