@@ -16,29 +16,63 @@ def print_model(model_type, model_name):
     return out, model
 
 
+def show_models(model_type):
+    if model_type == "ResNet":
+        lst = [
+            "resnet18",
+            "resnet34",
+            "resnet50",
+            "resnet101",
+            "resnet152"
+        ]
+    elif model_type == "EfficientNet":
+        lst = [
+            "efficientnet_b0",
+            "efficientnet_b1",
+            "efficientnet_b2",
+            "efficientnet_b3",
+            "efficientnet_b4",
+            "efficientnet_b5",
+            "efficientnet_b6",
+            "efficientnet_b7"
+        ]
+    elif model_type == "MobileNet":
+        lst = [
+            "mobilenet_v3_small",
+            "mobilenet_v3_large"
+        ]
+    elif model_type == "YOLOv8":
+        lst = [
+            "yolov8"
+        ]
+    
+    return lst
+
+
+def get_weights(f):
+
+    return f
+
 
 def run_model():
     pass
 
 
-demo = gr.Interface(
-    fn=print_model,
-    inputs=["text", "text"],
-    outputs=[
-        gr.Textbox(label="Done or Not", lines=1),
-        gr.Textbox(label="Model Architecture", lines=1)
-    ]
-)
+def run_gradio():
+    with gr.Blocks() as demo:
+        pass
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '--server_name',
-        type=str
+        type=str,
+        defualt='0.0.0.0'
     )
     parser.add_argument(
         '--server_port',
-        type=int
+        type=int,
+        defualt=7860
     )
     args=parser.parse_args()
 
