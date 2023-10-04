@@ -5,7 +5,7 @@ import model_selector
 import argparse
 
 
-def print_model(model_type, model_name):
+def get_model(model_type, model_name):
     mg =  model_selector.model_generator(model_type, model_name)
     model = mg.get_model()
     if model:
@@ -78,13 +78,22 @@ if __name__ == "__main__":
 
         def filter_models(choice):
             if choice in model_map.keys():
-                return gr.Dropdown.update(
+                return gr.Dropdown(
                     choices=model_map[choice], value=model_map[choice][1]
                 )
             else:
-                return gr.Dropdown.update(visible=False)
+                return gr.Dropdown(visible=False)
         
         radio.change(filter_models, inputs=radio, outputs=model_list)
+        b1 = gr.Button(value="Load Model")
+
+        with gr.Row() as output_row:
+            txt1 = gr.Textbox(label="Done or Not")
+            txt2 = gr.TextArea(label="Model Information")
+
+        b1.click(get_model, inputs=[radio, model_list], outputs=[txt1, txt2])
+
+        b2 = gr.Button(value="Start Prediction")
 
 
 
